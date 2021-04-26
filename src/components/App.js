@@ -1,8 +1,9 @@
 import '../styles/index.scss';
+import Menu from './menu/Menu.js';
 
 function App() {
   return (
-    <h1>Roślinne Kalendarium</h1>
+    <Menu/>
   );
 }
 
