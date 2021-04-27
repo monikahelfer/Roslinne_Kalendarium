@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 body {
   margin: 0;
   padding: 0;
@@ -9,5 +11,21 @@ body {
 }
 
 h1{
-  color: lightgreen;
+  color: $color-green-dark;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: $decorative-font;
+}
+
+h2{
+  color: $color-white;
+  font-size: 2rem;
+  text-align: left;
+  font-family: $decorative-font;
+}
+
+li{
+  list-style: none;
 }

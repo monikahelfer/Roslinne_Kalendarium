@@ -1,9 +1,15 @@
 import '../styles/index.scss';
-import Menu from './menu/Menu.js';
+import Menu from './Menu/Menu.js';
+import PlantList from "./PlantsList/PlantsList.js";
+import NewPlant from "./NewPlant/NewPlant.js";
 
 function App() {
   return (
-    <Menu/>
+    <>
+      <Menu />
+      <PlantList />
+      <NewPlant/>
+    </>
   );
 }
 

@@ -3,26 +3,14 @@
 .menu{
     background-color: $color-white;
     width: 100vw;
+    margin-bottom: 3rem;
 }
 
-h1{
-    color: $color-green-dark;
-    font-size: 3rem;
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    font-family: $decorative-font;
-}
-
-ul{
+.menu_items{
     display: flex;
     width: 100vw;
     justify-content: space-around;
     padding: 0;
-}
-
-li{
-    list-style: none;
 }
 
 a{

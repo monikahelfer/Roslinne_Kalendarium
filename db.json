@@ -1,0 +1,13 @@
+{
+    "plants": [
+        {
+            "id": 1,
+            "species": "Calthea White Fusion",
+            "watering": "often",
+            "waterType": "distill",
+            "fertilizing": "rare",
+            "lastRepoting": "15/04/2020",
+            "problems": ["Wciornastki", "Pleśń", "Przysychanie"]
+        }
+    ]
+}
