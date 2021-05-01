@@ -1,23 +1,16 @@
-import { useState, useEffect } from 'react';
 import './PlantsList.scss';
 
-import {getPlants} from './../API/PlantsAPI';
-
-function PlantList() {
-    const [plantList, setPlantList] = useState([]);
-
-    useEffect(() => {
-        getPlants(setPlantList);
-    }, []);
+function PlantList(props) {
 
     return (
         <section id="plant-list" className="plant-list">
             <div className="box">
-            <h2>Lista moich {plantList.length} roślin</h2>
+            <h2>Lista moich {props.listOfPlants.length} roślin</h2>
+            {console.log(props.listOfPlants)}
                 <ul>
-                    {plantList.map(plant => {
+                    {props.listOfPlants.map((plant, index) => {
                         return(
-                            <li className="plant-list_list" key={plant.id}>{plant.species}</li>
+                            <li className="plant-list_list" key={index}>{plant.species}</li>
                         )
                     })}
                 </ul>

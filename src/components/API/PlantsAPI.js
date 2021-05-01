@@ -1,9 +1,9 @@
-const url = "https://run.mocky.io/v3/d018b23d-9cb4-4db4-83fd-14f4df93b85c";
+const url = "http://localhost:3000/plants";
 
 export const getPlants = callback => {
     fetch(url)
     .then(response => response.json())
-    .then(data => callback(data.plants))
+    .then(data => callback(data))
     .catch(error => console.log(error));
 }
 
@@ -16,7 +16,6 @@ export const addPlant = (plantData, callback) => {
         body: JSON.stringify(plantData)
     })
     .then(response => response.json())
-    .then(data => callback(data.plants))
+    .then(data => callback(data))
     .catch(error => console.log(error));
 }
-

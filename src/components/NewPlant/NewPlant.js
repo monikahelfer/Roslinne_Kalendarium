@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 import {addPlant} from './../API/PlantsAPI.js';
 
-function NewPlant() {
+import './NewPlant.scss';
+
+function NewPlant({addNewPlant}) {
     const [species, setSpecies] = useState("");
     const [watering, setWatering] = useState("0");
     const [waterType, setWaterType] = useState("0");
@@ -28,10 +30,7 @@ function NewPlant() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const id = species;
-
         const plantData = {
-            id,
             species,
             watering,
             waterType,
@@ -39,7 +38,7 @@ function NewPlant() {
             lastRepoting
         };
 
-        addPlant(plantData);
+        addPlant(plantData, addNewPlant);
 
         setSpecies("");
         setWatering("0");
