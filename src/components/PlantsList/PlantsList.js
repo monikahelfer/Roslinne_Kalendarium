@@ -6,7 +6,6 @@ function PlantList(props) {
         <section id="plant-list" className="plant-list">
             <div className="box">
             <h2>Lista moich {props.listOfPlants.length} roślin</h2>
-            {console.log(props.listOfPlants)}
                 <ul>
                     {props.listOfPlants.map((plant, index) => {
                         return(

@@ -1,4 +1,4 @@
-const url = "http://localhost:3000/plants";
+const url = "https://my-json-server.typicode.com/monikahelfer/Roslinne_Kalendarium/plants";
 
 export const getPlants = callback => {
     fetch(url)
