@@ -11,18 +11,22 @@ function PlantsManager() {
     const [plantList, setPlantList] = useState([]);
 
     useEffect(() => {
-        getPlants(setPlantList);
+      getPlants(setPlantList);
     }, []);
 
     const handleAddNewPlant = plantData => {
-        setPlantList(previousPlants => [...previousPlants, plantData]);
+      setPlantList(previousPlants => [...previousPlants, plantData]);
     }
+
+    const handleRemovePlant = id => {
+      setPlantList(previousList => previousList.filter(plant => plant.id !== id))
+  };
 
   return (
     <>
       <Menu />
-      <PlantList listOfPlants={plantList}/>
       <NewPlant addNewPlant={handleAddNewPlant}/>
+      <PlantList listOfPlants={plantList} onRemove={handleRemovePlant}/>
     </>
   );
 }

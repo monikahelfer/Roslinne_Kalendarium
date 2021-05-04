@@ -5,3 +5,31 @@
     display: flex;
     justify-content: center;
 }
+
+.new-plant input, select{
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 1rem;
+    height: 2rem;
+    font-family: $regular-font-simple;
+    font-weight: 400;
+    border-radius: 5px;
+    border: none;
+    color: $color-green-dark;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+}
+
+.new-plant button{
+    border: 1px solid $color-white;
+    border-radius: 5px;
+    width: 5rem;
+    height: 2rem;
+    background-color: $color-white;
+    color: $color-green-dark;
+    font-size: 1rem;
+    font-family: $decorative-font;
+    text-align: center;
+    margin-top: 1rem;
+    float: right;
+}

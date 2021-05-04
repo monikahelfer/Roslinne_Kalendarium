@@ -1,17 +1,17 @@
 @import './../../styles/variables.scss';
 @import './../../styles/box.scss';
 
-.plant-list{
-    display: flex;
-    justify-content: center;
+button{
+    border: none;
+    background-color: $color-green-dark;
+    font-size: 1rem;
+    color: $color-white;
+    font-family: $regular-font-simple;
+    font-weight: 400;
+    float: right;
 }
 
-.plant-list ul{
-    margin: 0;
-    padding: 0;
-}
-
-.plant-list_list{
+.plant-list_elements{
     font-size: 1rem;
     color: $color-white;
     font-family: $regular-font-simple;
