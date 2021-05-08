@@ -4,12 +4,15 @@
     background-color: $color-white;
     width: 100vw;
     margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .menu_items{
     display: flex;
     width: 100vw;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 0;
 }
 

@@ -27,6 +27,7 @@ function NewPlant({addNewPlant}) {
         setLastRepoting(event.target.value);
     }
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
 

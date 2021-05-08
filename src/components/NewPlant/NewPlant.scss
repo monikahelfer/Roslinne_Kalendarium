@@ -18,6 +18,12 @@
     color: $color-green-dark;
     font-size: 1rem;
     padding-left: 0.5rem;
+    &::placeholder{
+        font-family: $regular-font-simple;
+        font-weight: 400;
+        color: $color-green-dark;
+        font-size: 1rem;
+    }
 }
 
 .new-plant button{

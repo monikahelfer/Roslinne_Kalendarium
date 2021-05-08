@@ -4,7 +4,9 @@ import PlantsManager from './PlantsManager/PlantsManager.js';
 
 function App() {
   return (
-    <PlantsManager/>
+    <>
+      <PlantsManager/>
+    </>
   );
 }
 
