@@ -27,7 +27,7 @@ export function Plant(props) {
     }
 
     const handleRemovePlant = () => {
-        removePlant(props.plant.id, props.onRemove);
+        removePlant(props.plantID, props.onRemove);
     };
 
     const displayPlantWatering = (watering) => {
