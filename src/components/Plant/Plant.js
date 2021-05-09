@@ -77,7 +77,7 @@ export function Plant(props) {
             </li>
             {plantInfo && (
                 showForm ? (
-                    <PlantForm onSubmit = {props.onEdit} label='Zapisz zmiany!' id={props.plantID} plantName={props.plantSpecies} action={handler}/>
+                    <PlantForm onSubmit = {props.onEdit} label='Zapisz zmiany!' id={props.plantID} plantName={props.plantSpecies} action={handler} />
                 ) : (
                 <ul className="plant-details" >
                     <li>Podlewanie: {displayPlantWatering(props.plantWatering)}</li>

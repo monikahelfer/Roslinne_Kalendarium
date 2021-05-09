@@ -34,11 +34,15 @@ export function PlantForm(props) {
 
     let plantData = null;
     let species = null;
+    let id = null;
 
     if (props.label === 'Dodaj!'){
         species = plantSpecies;
 
+        id = props.nextId + 1;
+
         plantData = {
+            id,
             species,
             watering,
             waterType,
@@ -51,7 +55,10 @@ export function PlantForm(props) {
     } else if (props.label === 'Zapisz zmiany!'){
         species = props.plantName;
 
+        id = props.id;
+
         plantData = {
+            id,
             species,
             watering,
             waterType,

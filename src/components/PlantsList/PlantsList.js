@@ -9,9 +9,9 @@ function PlantList(props) {
             <div className="box">
             <h2>Lista moich {props.listOfPlants.length} roślin</h2>
                 <ul>
-                    {props.listOfPlants.map(plant => {
+                    {props.listOfPlants.map((plant, index) => {
                         return(
-                            <Plant key={plant.id} onRemove={props.onRemove} onEdit={props.onEdit} plantID={plant.id} plantSpecies={plant.species} 
+                            <Plant key={index} onRemove={props.onRemove} onEdit={props.onEdit} plantID={plant.id} plantSpecies={plant.species} 
                             plantWatering = {plant.watering}
                             plantWaterType={plant.waterType}
                             plantFertilizing={plant.fertilizing}
