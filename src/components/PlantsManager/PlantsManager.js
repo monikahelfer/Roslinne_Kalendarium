@@ -12,9 +12,21 @@ function PlantsManager() {
 
     const [plantList, setPlantList] = useState([]);
     // const [showNotification, setShowNotification] = useState(false);
+    // const [plantsToWater, setPlantsToWater] = useState(false);
 
     useEffect(() => {
       getPlants(setPlantList);
+    //   const currentDate = new Date();
+    //   const currentDayOfWeek = currentDate.getDay();
+    //   if (currentDayOfWeek === 3){
+    //     setShowNotification(true);
+    //     setPlantsToWater(plantList.filter((plant) => plant.watering === "often"));
+    //   }else if (currentDayOfWeek === 0){
+    //     setShowNotification(true);
+    //     setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate"));
+    // } else {
+    //     setShowNotification(false);
+    // }
     }, []);
 
     const handleAddNewPlant = plantData => {
@@ -35,30 +47,10 @@ function PlantsManager() {
       }))
     }
 
-    // let plantsToWater = null;
-    // const currentDate = new Date ();
-    // const currentDayOfWeek = currentDate.getDay();
-
-    // function checkNotifications(currentDayOfWeek){
-    //   if (currentDayOfWeek === 3){
-    //     setShowNotification(true);
-    //     plantsToWater = plantList.filter((plant) => plant.watering === "often");
-    //     console.log(plantsToWater);
-    //     return(plantsToWater);
-    // } else if (currentDayOfWeek === 6){
-    //     setShowNotification(true);
-    //     plantsToWater = plantList.filter((plant) => plant.watering === "moderate");
-    //     return(plantsToWater);
-    // } else {
-    //     setShowNotification(false);
-    //     return(plantsToWater);
-    // }
-    // }
 
   return (
     <>
       <Menu />
-      {/* {checkNotifications(currentDayOfWeek)} */}
       {/* {showNotification === true &&
        <Notification plantList={plantsToWater}/>
       } */}

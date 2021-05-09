@@ -1,18 +1,16 @@
 import './Notification.scss';
 
-function Notification({plantList}) {
+function Notification(props) {
 
     return (
         <section id="notification" className="notification">
             <div className="box">
-            <h2>Dzisiaj oczekują podalnia:</h2>
+            <h2>Dzisiaj oczekują podlania:</h2>
                 <ul>
-                    {plantList.map((plant, index) => {
-                        return(
+                    {props.plantList.map((plant, index) => {
                             <div key={index} className="plant-list_list">
                                 <li>{plant.species}</li>
                             </div>
-                        )
                     })}
                 </ul>
             </div>
