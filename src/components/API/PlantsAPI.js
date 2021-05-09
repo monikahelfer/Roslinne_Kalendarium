@@ -38,7 +38,7 @@ export const editPlant = (id, plantData, callback) => {
         body: JSON.stringify(plantData)
     })
     .then(response => response.json())
-    .then(data => callback(data))
+    .then(data => callback(id, data))
     .catch(error => console.log(error));
 }
 

@@ -25,6 +25,16 @@ function PlantsManager() {
       setPlantList(previousList => previousList.filter(plant => plant.id !== id))
     }
 
+    const handleEditPlant = (id, data) => {
+      setPlantList(previousList => previousList.map(plant => {
+        if(plant.id !== id){
+          return plant;
+        } else {
+          return {...data};
+        }
+      }))
+    }
+
     // let plantsToWater = null;
     // const currentDate = new Date ();
     // const currentDayOfWeek = currentDate.getDay();
@@ -53,7 +63,7 @@ function PlantsManager() {
        <Notification plantList={plantsToWater}/>
       } */}
       <NewPlant addNewPlant={handleAddNewPlant}/>
-      <PlantList listOfPlants={plantList} onRemove={handleRemovePlant}/>
+      <PlantList listOfPlants={plantList} onRemove={handleRemovePlant} onEdit={handleEditPlant}/>
     </>
   );
 }

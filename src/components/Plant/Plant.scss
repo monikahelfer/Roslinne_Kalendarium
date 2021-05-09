@@ -1,0 +1,50 @@
+@import './../../styles/variables.scss';
+
+.plant-list_list{
+    font-size: 1.1rem;
+    color: $color-white;
+    font-family: $regular-font-simple;
+    font-weight: 400;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0.4rem;
+    list-style: none;
+    .list-element{
+        font-size: 1rem;
+        color: $color-white;
+        font-family: $regular-font-simple;
+        font-weight: 400;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    .buttons{
+        display: flex;
+        justify-content: left;
+    }
+    .plant-details{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5px;
+        margin: 10px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .plant-details > li{
+        list-style: inside;
+    }
+}
+
+button{
+    border: none;
+    background-color: $color-green-dark;
+    font-size: 1rem;
+    color: $color-white;
+    font-family: $regular-font-simple;
+    font-weight: 400;
+    float: right;
+    cursor: pointer;
+}
