@@ -1,12 +1,10 @@
 import { useState } from 'react';
-
 import { addPlant } from '../API/PlantsAPI.js'
-import { editPlant } from '../API/PlantsAPI.js'
 
-import './PlantForm.scss';
+import './NewPlantForm.scss';
 
-export function PlantForm(props) {
-    const [plantSpecies, setPlantSpecies] = useState("");
+export function NewPlantForm({onSubmit, nextId}) {
+    const [species, setSpecies] = useState("");
     const [watering, setWatering] = useState("0");
     const [waterType, setWaterType] = useState("0");
     const [fertilizing, setFertilizing] = useState("0");
@@ -15,7 +13,7 @@ export function PlantForm(props) {
     const [validForm, setValidForm] = useState(true);
 
     const handleSpeciesChange = (event) => {
-        setPlantSpecies(event.target.value);    
+        setSpecies(event.target.value);    
     }
     const handleWateringChange = (event) => {
         setWatering(event.target.value);
@@ -33,51 +31,27 @@ export function PlantForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (plantSpecies.length === 0 || watering === "0" || waterType === "0" || fertilizing === "0" || lastRepoting === ""){
+        if (species.length === 0 || watering === "0" || waterType === "0" || fertilizing === "0" || lastRepoting === ""){
             setValidForm(false);
         }else{
-
             setValidForm(true);
 
-            let plantData = null;
-            let species = null;
-            let id = null;
+            let id = nextId + 1;
 
-            if (props.label === 'Dodaj!'){
-                species = plantSpecies;
-
-                id = props.nextId + 1;
-
-                plantData = {
-                    id,
-                    species,
-                    watering,
-                    waterType,
-                    fertilizing,
-                    lastRepoting
-                };
-
-                addPlant(plantData, props.onSubmit);
-
-            } else if (props.label === 'Zapisz zmiany!'){
-                species = props.plantName;
-
-                id = props.id;
-
-                plantData = {
-                    id,
-                    species,
-                    watering,
-                    waterType,
-                    fertilizing,
-                    lastRepoting
-                };
-
-                editPlant(props.id, plantData, props.onSubmit);
-                props.action();
+            let plantData = {
+                id,
+                species,
+                watering,
+                waterType,
+                fertilizing,
+                lastRepoting
             };
 
-            setPlantSpecies("");
+            console.log(plantData);
+
+            addPlant(plantData, onSubmit);
+
+            setSpecies("");
             setWatering("0");
             setWaterType("0");
             setFertilizing("0");
@@ -95,18 +69,16 @@ export function PlantForm(props) {
     }
 
     return (
-        <section key={props.plantId} className="plant-form" >
+        <section className="plant-form" >
             <form onSubmit={handleSubmit}>
-                {(props.label === 'Dodaj!') && (
-                <div>
-                    <input 
-                        type="text"
-                        name="species"
-                        value={plantSpecies}
-                        placeholder="Gatunek"
-                        onChange={handleSpeciesChange}/>
+            <div>
+                <input 
+                    type="text"
+                    name="species"
+                    value={species}
+                    placeholder="Gatunek"
+                    onChange={handleSpeciesChange}/>
                 </div>
-                )}
             <div>
                 <select value={watering} onChange={handleWateringChange}>
                     <option value="0" disabled>
@@ -149,7 +121,7 @@ export function PlantForm(props) {
                     }
                 </ul>
                 <button>
-                    {props.label}
+                    Dodaj!
                 </button>
             </div>
             </form> 

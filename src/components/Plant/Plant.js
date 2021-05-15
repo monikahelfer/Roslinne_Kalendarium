@@ -2,7 +2,7 @@ import './Plant.scss';
 
 import { useState } from 'react';
 
-import { PlantForm } from '../PlantForm/PlantForm.js';
+import { EditPlantForm } from '../EditPlantForm/EditPlantForm.js';
 import { removePlant } from './../API/PlantsAPI.js';
 
 export function Plant(props) {
@@ -32,29 +32,29 @@ export function Plant(props) {
 
     const displayPlantWatering = (watering) => {
         if (watering === 'often'){
-            return('dwa razy w tygodniu');
+            return('Dwa razy w tygodniu');
         }else if (watering === 'moderate'){
-            return('raz w tygodniu');
+            return('Raz w tygodniu');
         }else if (watering === 'rare'){
-            return('raz na dwa tygodnie');
+            return('Raz na dwa tygodnie');
         }
     }
 
     const displayPlantWaterType = (waterType) => {
         if (waterType === 'distill'){
-            return('destylowana');
+            return('Destylowana');
         }else if (waterType === 'tap'){
-            return('filtrowana');
+            return('Filtrowana');
         }
     }
 
     const displayPlantFertilizing = (fertilizing) => {
         if (fertilizing === 'often'){
-            return('często');
+            return('Często');
         }else if (fertilizing === 'moderate'){
-            return('umiarkowanie');
+            return('Umiarkowanie');
         }else if (fertilizing === 'rare'){
-            return('wcale');
+            return('Wcale');
         }
     }
 
@@ -78,7 +78,10 @@ export function Plant(props) {
             </div>
             {plantInfo && (
                 showForm ? (
-                    <PlantForm onSubmit = {props.onEdit} label='Zapisz zmiany!' id={props.plantID} plantName={props.plantSpecies} action={handler} />
+                    <EditPlantForm onSubmit = {props.onEdit} id={props.plantID} species={props.plantSpecies} action={handler} plantWatering = {props.plantWatering}
+                    plantWaterType={props.plantWaterType}
+                    plantFertilizing={props.plantFertilizing}
+                    plantLastRepoting={props.plantLastRepoting}/>
                 ) : (
                 <ul className="plant-details" >
                     <li>Podlewanie: {displayPlantWatering(props.plantWatering)}</li>

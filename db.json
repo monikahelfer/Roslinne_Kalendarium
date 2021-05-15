@@ -1,20 +1,12 @@
 {
   "plants": [
     {
-      "id": 1,
-      "species": "Calthea White Fusion",
-      "watering": "often",
-      "waterType": "distill",
-      "fertilizing": "rare",
-      "lastRepoting": "15/04/2020"
-    },
-    {
+      "id": 2,
       "species": "Ficus Robusta",
       "watering": "moderate",
       "waterType": "tap",
       "fertilizing": "moderate",
-      "lastRepoting": "2021-05-01",
-      "id": 2
+      "lastRepoting": "2021-04-30"
     },
     {
       "species": "Calathea Warscewiczii",
@@ -30,6 +22,14 @@
       "watering": "moderate",
       "waterType": "tap",
       "fertilizing": "moderate",
+      "lastRepoting": "2021-05-15"
+    },
+    {
+      "id": 5,
+      "species": "Calathea Misto",
+      "watering": "often",
+      "waterType": "distill",
+      "fertilizing": "rare",
       "lastRepoting": "2021-05-15"
     }
   ]

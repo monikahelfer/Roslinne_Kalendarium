@@ -1,4 +1,4 @@
-import { PlantForm } from '../PlantForm/PlantForm.js';
+import { NewPlantForm } from '../NewPlantForm/NewPlantForm.js';
 
 import './NewPlant.scss';
 
@@ -8,7 +8,7 @@ function NewPlant(props) {
         <section id="new-plant" className="new-plant">
           <div className="box">
           <h2>Dodaj nową roślinę</h2>
-          <PlantForm onSubmit={props.addNewPlant} label='Dodaj!' nextId={props.nextId} />
+          <NewPlantForm onSubmit={props.addNewPlant} nextId={props.nextId} />
           </div>
         </section>
     );
