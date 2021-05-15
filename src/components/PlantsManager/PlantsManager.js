@@ -23,7 +23,7 @@ function PlantsManager() {
         setPlantsToWater(plantList.filter((plant) => plant.watering === "often"));
       }else if (currentDayOfWeek === 6){
         setShowNotification(true);
-        setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate" || "often"));
+        setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate" || plant.watering === "often"));
     } else {
         setShowNotification(false);
     }

@@ -23,6 +23,14 @@
       "fertilizing": "often",
       "lastRepoting": "2021-05-01",
       "id": 3
+    },
+    {
+      "id": 4,
+      "species": "Monstera Deliciosa",
+      "watering": "moderate",
+      "waterType": "tap",
+      "fertilizing": "moderate",
+      "lastRepoting": "2021-05-15"
     }
   ]
 }

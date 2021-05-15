@@ -12,9 +12,10 @@ export function PlantForm(props) {
     const [fertilizing, setFertilizing] = useState("0");
     const [lastRepoting, setLastRepoting] = useState("");
     const [dateType, setDateType] = useState("text");
+    const [validForm, setValidForm] = useState(true);
 
     const handleSpeciesChange = (event) => {
-        setPlantSpecies(event.target.value);     
+        setPlantSpecies(event.target.value);    
     }
     const handleWateringChange = (event) => {
         setWatering(event.target.value);
@@ -29,55 +30,61 @@ export function PlantForm(props) {
         setLastRepoting(event.target.value);
     }
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
-    let plantData = null;
-    let species = null;
-    let id = null;
+        if (plantSpecies.length === 0 || watering === "0" || waterType === "0" || fertilizing === "0" || lastRepoting === ""){
+            setValidForm(false);
+        }else{
 
-    if (props.label === 'Dodaj!'){
-        species = plantSpecies;
+            setValidForm(true);
 
-        id = props.nextId + 1;
+            let plantData = null;
+            let species = null;
+            let id = null;
 
-        plantData = {
-            id,
-            species,
-            watering,
-            waterType,
-            fertilizing,
-            lastRepoting
-        };
+            if (props.label === 'Dodaj!'){
+                species = plantSpecies;
 
-        addPlant(plantData, props.onSubmit);
+                id = props.nextId + 1;
 
-    } else if (props.label === 'Zapisz zmiany!'){
-        species = props.plantName;
+                plantData = {
+                    id,
+                    species,
+                    watering,
+                    waterType,
+                    fertilizing,
+                    lastRepoting
+                };
 
-        id = props.id;
+                addPlant(plantData, props.onSubmit);
 
-        plantData = {
-            id,
-            species,
-            watering,
-            waterType,
-            fertilizing,
-            lastRepoting
-        };
+            } else if (props.label === 'Zapisz zmiany!'){
+                species = props.plantName;
 
-        editPlant(props.id, plantData, props.onSubmit);
-        props.action();
-    };
+                id = props.id;
 
-        setPlantSpecies("");
-        setWatering("0");
-        setWaterType("0");
-        setFertilizing("0");
-        setLastRepoting("");
-        setDateType("text");
-    };
+                plantData = {
+                    id,
+                    species,
+                    watering,
+                    waterType,
+                    fertilizing,
+                    lastRepoting
+                };
+
+                editPlant(props.id, plantData, props.onSubmit);
+                props.action();
+            };
+
+            setPlantSpecies("");
+            setWatering("0");
+            setWaterType("0");
+            setFertilizing("0");
+            setLastRepoting("");
+            setDateType("text");
+        }
+    }
 
     const changeDate = () =>{
         if (dateType === "text"){
@@ -85,7 +92,6 @@ export function PlantForm(props) {
         }else {
             setDateType("text");
         }
-        
     }
 
     return (
@@ -103,7 +109,7 @@ export function PlantForm(props) {
                 )}
             <div>
                 <select value={watering} onChange={handleWateringChange}>
-                    <option value="0">
+                    <option value="0" disabled>
                     Częstotliwość podlewania
                     </option>
                     <option value="often">Dwa razy w tygodniu</option>
@@ -113,14 +119,14 @@ export function PlantForm(props) {
             </div>
             <div>
                 <select value={waterType} onChange={handleWaterTypeChange}>
-                    <option value="0">Typ wody</option>
+                    <option value="0" disabled>Typ wody</option>
                     <option value="distill">Destylowana</option>
                     <option value="tap">Filtrowana</option>
                 </select>
             </div>
             <div>
                 <select value={fertilizing} onChange={handleFerilizingChange}>
-                    <option value="0">Intenwywność nawożenia</option>
+                    <option value="0" disabled>Intenwywność nawożenia</option>
                     <option value="often">Często</option>
                     <option value="moderate">Umiarkowanie</option>
                     <option value="rare">Wcale</option>
@@ -136,9 +142,16 @@ export function PlantForm(props) {
                     placeholder="Ostatnie przesadzanie"
                     onChange={handleLastRepotingChange}/>
             </div>
-            <button>
-                {props.label}
-            </button>
+            <div className="form-submit">
+                <ul className="form-warnings">
+                    {!validForm && (
+                        <p>Uzupełnij wszystkie pola formularza.</p>)
+                    }
+                </ul>
+                <button>
+                    {props.label}
+                </button>
+            </div>
             </form> 
         </section>
     );

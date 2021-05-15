@@ -36,4 +36,14 @@
         float: right;
 
     }
+    .form-warnings{
+        font-size: 1rem;
+        color: $color-white;
+        font-family: $regular-font-simple;
+        font-weight: 400;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
 }
