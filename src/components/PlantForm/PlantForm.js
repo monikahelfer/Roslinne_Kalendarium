@@ -11,6 +11,7 @@ export function PlantForm(props) {
     const [waterType, setWaterType] = useState("0");
     const [fertilizing, setFertilizing] = useState("0");
     const [lastRepoting, setLastRepoting] = useState("");
+    const [dateType, setDateType] = useState("text");
 
     const handleSpeciesChange = (event) => {
         setPlantSpecies(event.target.value);     
@@ -75,7 +76,17 @@ export function PlantForm(props) {
         setWaterType("0");
         setFertilizing("0");
         setLastRepoting("");
+        setDateType("text");
     };
+
+    const changeDate = () =>{
+        if (dateType === "text"){
+            setDateType("date");
+        }else {
+            setDateType("text");
+        }
+        
+    }
 
     return (
         <section key={props.plantId} className="plant-form" >
@@ -117,7 +128,9 @@ export function PlantForm(props) {
             </div>
             <div>
                 <input 
-                    type="date"
+                    type={dateType}
+                    onFocus={changeDate}
+                    onBlur={changeDate}
                     name="lastRepoting"
                     value={lastRepoting}
                     placeholder="Ostatnie przesadzanie"
