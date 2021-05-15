@@ -64,8 +64,9 @@ export function Plant(props) {
 
     return (
         <div className="plant-list_list">
-            <li className="list-element">{props.plantSpecies}
-            <div className="buttons">
+            <div className="displayed-list">
+                <li className="list-element">{props.plantSpecies}</li>
+                <div className="buttons">
                     {!showForm && (
                     <button onClick={togglePlantInfo}>+</button>
                     )}
@@ -74,7 +75,7 @@ export function Plant(props) {
                     )}
                     <button onClick={handleRemovePlant}><i className="fas fa-trash-alt"></i></button>
                 </div>
-            </li>
+            </div>
             {plantInfo && (
                 showForm ? (
                     <PlantForm onSubmit = {props.onEdit} label='Zapisz zmiany!' id={props.plantID} plantName={props.plantSpecies} action={handler} />

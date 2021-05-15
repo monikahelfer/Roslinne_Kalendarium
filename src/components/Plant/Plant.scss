@@ -11,13 +11,17 @@
     justify-content: center;
     margin-bottom: 0.4rem;
     list-style: none;
+    .displayed-list{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+    }
     .list-element{
         font-size: 1rem;
         color: $color-white;
         font-family: $regular-font-simple;
         font-weight: 400;
-        display: flex;
-        justify-content: space-between;
         margin-bottom: 10px;
     }
     .buttons{
