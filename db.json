@@ -1,14 +1,6 @@
 {
   "plants": [
     {
-      "id": 2,
-      "species": "Ficus Robusta",
-      "watering": "moderate",
-      "waterType": "tap",
-      "fertilizing": "moderate",
-      "lastRepoting": "2021-04-30"
-    },
-    {
       "species": "Calathea Warscewiczii",
       "watering": "often",
       "waterType": "distill",
