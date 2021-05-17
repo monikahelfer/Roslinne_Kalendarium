@@ -1,51 +1,81 @@
 const functions = require("firebase-functions");
 const express = require ('express');
 const cors = require('cors');
-
-const admin = require('firebase-admin');
-admin.initializeApp();
-
 const app = express();
+app.use(cors({ origin: true }));
+const admin = require('firebase-admin');
 
-app.get('/', async (req, res) => {
-    const snapshot = await admin.firestore().collection('plants').get();
-    
-    let plants = [];
-    snapshot.forEach(doc => {
-        let id = doc.id;
-        let data = doc.data();
-
-        plants.push({id, ...data});
-    })
-
-    res.status(200).send(JSON.stringify(plants));
+var serviceAccount = require("./permissions.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://fir-api-9a206..firebaseio.com"
 });
+const db = admin.firestore();
 
-app.post('/', async (req, res) => {
-    const plant = req.body;
+app.get('/', (req, res) => {
+    (async () => {
+        try {
+            let query = db.collection('plants');
+            let response = [];
+            await query.get().then(querySnapshot => {
+            let docs = querySnapshot.docs;
+            for (let doc of docs) {
+                const selectedItem = {
+                    id: doc.id,
+                    species: doc.data().species,
+                    watering: doc.data().watering,
+                    waterType: doc.data().waterType,
+                    fertilizing: doc.data().fertilizing,
+                    lastRepoting: doc.data().lastRepoting
+                }
+                response.push(selectedItem);
+            }
+            });
+            return res.status(200).send(response);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
+        })();
+    });
 
-    await admin.firestore().collection('plants').doc('/' + plant.id + '/').create(plant);
+app.post('/', (req, res) => {
+    (async () => {
+        try {
+          await db.collection('plants').doc('/' + req.body.id + '/')
+              .create(req.body);
+          return res.status(200).send();
+        } catch (error) {
+          console.log(error);
+          return res.status(500).send(error);
+        }
+      })();
+  });
 
-    res.status(201).send();
-});
+app.put('/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('plants').doc(req.params.id);
+            await document.update(req.body);
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
+        })();
+    });
 
-app.put("/:id", async (req, res) => {
-    const body = req.body;
-
-    await admin.firestore().collection('plants').doc(req.params.id).update(body);
-
-    res.status(200).send()
-});
-
-app.delete("/:id", async (req, res) => {
-    await admin.firestore().collection('plants').doc(req.params.id).delete();
-
-    res.status(200).send();
-})
+app.delete('/:id', (req, res) => {
+    (async () => {
+        try {
+            const document = db.collection('plants').doc(req.params.id);
+            await document.delete();
+            return res.status(200).send();
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send(error);
+        }
+        })();
+    });
 
 exports.plant = functions.https.onRequest(app);
-
-
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   response.send("Hello from Firebase!");
-// });
