@@ -9,7 +9,6 @@ export function NewPlantForm({onSubmit}) {
     const [lastRepoting, setLastRepoting] = useState("");
     const [dateType, setDateType] = useState("text");
     const [validForm, setValidForm] = useState(true);
-    const [plantId, setPlantId] = useState(0);
 
     const handleSpeciesChange = (event) => {
         setSpecies(event.target.value);    
@@ -35,9 +34,11 @@ export function NewPlantForm({onSubmit}) {
         }else{
             setValidForm(true);
 
-            setPlantId(plantId + 1);
+            let id;
 
-            let id = plantId;
+            let findId = () => id = '_' + Math.random().toString(36).substr(2, 9);
+
+            findId();
 
             let plantData = {
                 id,
@@ -47,6 +48,8 @@ export function NewPlantForm({onSubmit}) {
                 fertilizing,
                 lastRepoting
             };
+
+            console.log(plantData);
 
             addPlant(plantData, onSubmit);
 

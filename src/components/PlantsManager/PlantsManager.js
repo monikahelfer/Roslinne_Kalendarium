@@ -26,8 +26,9 @@ function PlantsManager() {
         setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate" || plant.watering === "often"));
     } else {
         setShowNotification(false);
-    }
+    };
     }, [plantList]);
+
 
     const handleAddNewPlant = plantData => {
       setPlantList(previousPlants => [...previousPlants, plantData]);
