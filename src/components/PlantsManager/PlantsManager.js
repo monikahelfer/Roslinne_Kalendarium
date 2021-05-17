@@ -54,7 +54,7 @@ function PlantsManager() {
       {showNotification === true &&
        <Notification plantList={plantsToWater}/>
       }
-      <NewPlant addNewPlant={handleAddNewPlant} nextId={plantList.length}/>
+      <NewPlant addNewPlant={handleAddNewPlant}/>
       <PlantList listOfPlants={plantList} onRemove={handleRemovePlant} onEdit={handleEditPlant}/>
     </>
   );

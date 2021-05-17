@@ -3,7 +3,7 @@ import { addPlant } from '../API/PlantsAPI.js'
 
 import './NewPlantForm.scss';
 
-export function NewPlantForm({onSubmit, nextId}) {
+export function NewPlantForm({onSubmit}) {
     const [species, setSpecies] = useState("");
     const [watering, setWatering] = useState("0");
     const [waterType, setWaterType] = useState("0");
@@ -11,6 +11,7 @@ export function NewPlantForm({onSubmit, nextId}) {
     const [lastRepoting, setLastRepoting] = useState("");
     const [dateType, setDateType] = useState("text");
     const [validForm, setValidForm] = useState(true);
+    const [plantId, setPlantId] = useState(0);
 
     const handleSpeciesChange = (event) => {
         setSpecies(event.target.value);    
@@ -36,7 +37,9 @@ export function NewPlantForm({onSubmit, nextId}) {
         }else{
             setValidForm(true);
 
-            let id = nextId + 1;
+            setPlantId(plantId + 1);
+
+            let id = plantId;
 
             let plantData = {
                 id,
