@@ -98,8 +98,8 @@ export function EditPlantForm({onSubmit, id, species, action, plantWatering, pla
                     placeholder="Ostatnie przesadzanie"
                     onChange={handleLastRepotingChange}/>
             </div>
-            <div className="form-submit">
-                <ul className="form-warnings">
+            <div className="form__submit">
+                <ul className="form__warnings">
                     {!validForm && (
                         <p>Uzupełnij wszystkie pola formularza.</p>)
                     }

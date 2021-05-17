@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { addPlant } from '../API/PlantsAPI.js'
 
-import './NewPlantForm.scss';
-
-export function NewPlantForm({onSubmit, nextId}) {
+export function NewPlantForm({onSubmit}) {
     const [species, setSpecies] = useState("");
     const [watering, setWatering] = useState("0");
     const [waterType, setWaterType] = useState("0");
@@ -11,6 +9,7 @@ export function NewPlantForm({onSubmit, nextId}) {
     const [lastRepoting, setLastRepoting] = useState("");
     const [dateType, setDateType] = useState("text");
     const [validForm, setValidForm] = useState(true);
+    const [plantId, setPlantId] = useState(0);
 
     const handleSpeciesChange = (event) => {
         setSpecies(event.target.value);    
@@ -36,7 +35,9 @@ export function NewPlantForm({onSubmit, nextId}) {
         }else{
             setValidForm(true);
 
-            let id = nextId + 1;
+            setPlantId(plantId + 1);
+
+            let id = plantId;
 
             let plantData = {
                 id,
@@ -46,8 +47,6 @@ export function NewPlantForm({onSubmit, nextId}) {
                 fertilizing,
                 lastRepoting
             };
-
-            console.log(plantData);
 
             addPlant(plantData, onSubmit);
 
@@ -114,8 +113,8 @@ export function NewPlantForm({onSubmit, nextId}) {
                     placeholder="Ostatnie przesadzanie"
                     onChange={handleLastRepotingChange}/>
             </div>
-            <div className="form-submit">
-                <ul className="form-warnings">
+            <div className="form__submit">
+                <ul className="form__warnings">
                     {!validForm && (
                         <p>Uzupełnij wszystkie pola formularza.</p>)
                     }

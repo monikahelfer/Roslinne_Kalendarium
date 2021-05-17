@@ -1,6 +1,6 @@
 @import './../../styles/variables.scss';
 
-.plant-list_list{
+.plant-list__list{
     font-size: 1.1rem;
     color: $color-white;
     font-family: $regular-font-simple;
@@ -28,7 +28,17 @@
         display: flex;
         justify-content: left;
     }
-    .plant-details{
+    button{
+        border: none;
+        background-color: $color-green-dark;
+        font-size: 1rem;
+        color: $color-white;
+        font-family: $regular-font-simple;
+        font-weight: 400;
+        float: right;
+        cursor: pointer;
+    }
+    .plant--details{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -37,18 +47,8 @@
         box-sizing: border-box;
         width: 100%;
     }
-    .plant-details > li{
+    .plant--details > li{
         list-style: inside;
     }
 }
 
-button{
-    border: none;
-    background-color: $color-green-dark;
-    font-size: 1rem;
-    color: $color-white;
-    font-family: $regular-font-simple;
-    font-weight: 400;
-    float: right;
-    cursor: pointer;
-}

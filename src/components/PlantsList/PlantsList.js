@@ -11,11 +11,17 @@ function PlantList(props) {
                 <ul>
                     {props.listOfPlants.map((plant, index) => {
                         return(
-                            <Plant key={index} onRemove={props.onRemove} onEdit={props.onEdit} plantID={plant.id} plantSpecies={plant.species} 
+                            <Plant 
+                            key={index} 
+                            onRemove={props.onRemove} 
+                            onEdit={props.onEdit} 
+                            plantID={plant.id} 
+                            plantSpecies={plant.species} 
                             plantWatering = {plant.watering}
                             plantWaterType={plant.waterType}
                             plantFertilizing={plant.fertilizing}
-                            plantLastRepoting={plant.lastRepoting}/>
+                            plantLastRepoting={plant.lastRepoting}
+                            />
                         )
                     })}
                 </ul>

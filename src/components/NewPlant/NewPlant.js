@@ -8,7 +8,7 @@ function NewPlant(props) {
         <section id="new-plant" className="new-plant">
           <div className="box">
           <h2>Dodaj nową roślinę</h2>
-          <NewPlantForm onSubmit={props.addNewPlant} nextId={props.nextId} />
+          <NewPlantForm onSubmit={props.addNewPlant}/>
           </div>
         </section>
     );
