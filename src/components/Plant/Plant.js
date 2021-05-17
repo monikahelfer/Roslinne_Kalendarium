@@ -63,12 +63,14 @@ export function Plant(props) {
     }
 
     return (
-        <div className="plant-list_list">
+        <div className="plant-list__list">
             <div className="displayed-list">
                 <li className="list-element">{props.plantSpecies}</li>
                 <div className="buttons">
                     {!showForm && (
-                    <button onClick={togglePlantInfo}>+</button>
+                    <button onClick={togglePlantInfo}>
+                        {plantInfo ? (<i className="fas fa-minus-circle"></i>) : (<i className="fas fa-plus-circle"></i>)}
+                    </button>
                     )}
                     {plantInfo && (
                     <button onClick={togglePlantForm}><i className="far fa-edit"></i></button>
@@ -78,12 +80,18 @@ export function Plant(props) {
             </div>
             {plantInfo && (
                 showForm ? (
-                    <EditPlantForm onSubmit = {props.onEdit} id={props.plantID} species={props.plantSpecies} action={handler} plantWatering = {props.plantWatering}
+                    <EditPlantForm 
+                    onSubmit = {props.onEdit} 
+                    id={props.plantID} 
+                    species={props.plantSpecies} 
+                    action={handler} 
+                    plantWatering = {props.plantWatering}
                     plantWaterType={props.plantWaterType}
                     plantFertilizing={props.plantFertilizing}
-                    plantLastRepoting={props.plantLastRepoting}/>
+                    plantLastRepoting={props.plantLastRepoting}
+                    />
                 ) : (
-                <ul className="plant-details" >
+                <ul className="plant--details" >
                     <li>Podlewanie: {displayPlantWatering(props.plantWatering)}</li>
                     <li>Rodzaj wody: {displayPlantWaterType(props.plantWaterType)}</li>
                     <li>Nawożenie: {displayPlantFertilizing(props.plantFertilizing)}</li>

@@ -1,5 +1,4 @@
 @import './../../styles/variables.scss';
-@import './../../styles/box.scss';
 
 .notification{
     display: flex;
@@ -8,7 +7,7 @@
         margin: 0;
         padding: 0;
     }
-    .plant-list_list{
+    .plant-list__list{
         font-size: 1.1rem;
         color: $color-white;
         font-family: $regular-font-simple;

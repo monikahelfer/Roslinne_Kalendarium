@@ -47,7 +47,6 @@ function PlantsManager() {
       }))
     }
 
-
   return (
     <>
       <Menu />
