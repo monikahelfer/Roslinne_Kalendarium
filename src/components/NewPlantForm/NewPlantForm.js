@@ -49,8 +49,6 @@ export function NewPlantForm({onSubmit}) {
                 lastRepoting
             };
 
-            console.log(plantData);
-
             addPlant(plantData, onSubmit);
 
             setSpecies("");
