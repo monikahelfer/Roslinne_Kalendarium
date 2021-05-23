@@ -63,7 +63,7 @@ export function Plant(props) {
     }
 
     return (
-        <div className="plant-list__list">
+        <div className="plant-list__item">
             <div className="displayed-list">
                 <li className="list-element">{props.plantSpecies}</li>
                 <div className="buttons">

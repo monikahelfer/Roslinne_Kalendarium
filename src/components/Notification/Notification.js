@@ -9,7 +9,7 @@ function Notification(props) {
                 <ul>
                     {props.plantList.map((plant, index) => {
                         return(
-                            <div key={index} className="plant-list__list">
+                            <div key={index} className="plant-list__item">
                                 <li>{plant.species}</li>
                             </div>
                         )
