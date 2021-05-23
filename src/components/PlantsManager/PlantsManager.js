@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Menu from '../Menu/Menu.js';
 import PlantList from "../PlantsList/PlantsList.js";
 import NewPlant from "../NewPlant/NewPlant.js";
-// import Notification from "../Notification/Notification.js";
+import Notification from "../Notification/Notification.js";
 
 import {getPlants} from './../API/PlantsAPI';
 
@@ -11,23 +11,26 @@ import {getPlants} from './../API/PlantsAPI';
 function PlantsManager() {
 
     const [plantList, setPlantList] = useState([]);
-    // const [showNotification, setShowNotification] = useState(false);
-    // const [plantsToWater, setPlantsToWater] = useState(false);
+    const [showNotification, setShowNotification] = useState(false);
+    const [plantsToWater, setPlantsToWater] = useState(false);
 
     useEffect(() => {
       getPlants(setPlantList);
-    //   const currentDate = new Date();
-    //   const currentDayOfWeek = currentDate.getDay();
-    //   if (currentDayOfWeek === 3){
-    //     setShowNotification(true);
-    //     setPlantsToWater(plantList.filter((plant) => plant.watering === "often"));
-    //   }else if (currentDayOfWeek === 0){
-    //     setShowNotification(true);
-    //     setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate" || plant.watering === "often"));
-    // } else {
-    //     setShowNotification(false);
-    // };
     }, []);
+
+    useEffect(() => {
+      const currentDate = new Date();
+      const currentDayOfWeek = currentDate.getDay();
+      if (currentDayOfWeek === 3){
+        setShowNotification(true);
+        setPlantsToWater(plantList.filter((plant) => plant.watering === "often"));
+      }else if (currentDayOfWeek === 6){
+        setShowNotification(true);
+        setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate" || plant.watering === "often"));
+    } else {
+        setShowNotification(false);
+    };
+    }, [plantList])
 
 
     const handleAddNewPlant = plantData => {
@@ -51,9 +54,9 @@ function PlantsManager() {
   return (
     <>
       <Menu />
-      {/* {showNotification === true &&
+      {showNotification === true &&
        <Notification plantList={plantsToWater}/>
-      } */}
+      }
       <NewPlant addNewPlant={handleAddNewPlant}/>
       <PlantList listOfPlants={plantList} onRemove={handleRemovePlant} onEdit={handleEditPlant}/>
     </>
