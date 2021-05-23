@@ -21,12 +21,19 @@ function PlantsManager() {
     useEffect(() => {
       const currentDate = new Date();
       const currentDayOfWeek = currentDate.getDay();
+      const currentWeekNumber = require('current-week-number');
+
       if (currentDayOfWeek === 3){
         setShowNotification(true);
         setPlantsToWater(plantList.filter((plant) => plant.watering === "often"));
       }else if (currentDayOfWeek === 6){
         setShowNotification(true);
-        setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate" || plant.watering === "often"));
+        if(currentWeekNumber(currentDate) % 2 !== 0){
+          // Plants that require watering every two weeks
+          setPlantsToWater(plantList);
+        }else{
+          setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate" || plant.watering === "often"));
+        }
     } else {
         setShowNotification(false);
     };
