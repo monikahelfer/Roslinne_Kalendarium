@@ -11,7 +11,6 @@ import {getPlants} from './../API/PlantsAPI';
 function PlantsManager() {
 
     const [plantList, setPlantList] = useState([]);
-    const [showNotification, setShowNotification] = useState(false);
     const [plantsToWater, setPlantsToWater] = useState(false);
 
     useEffect(() => {
@@ -24,19 +23,16 @@ function PlantsManager() {
       const currentWeekNumber = require('current-week-number');
 
       if (currentDayOfWeek === 3){
-        setShowNotification(true);
         setPlantsToWater(plantList.filter((plant) => plant.watering === "often"));
       }else if (currentDayOfWeek === 6){
-        setShowNotification(true);
         if(currentWeekNumber(currentDate) % 2 !== 0){
-          // Plants that require watering every two weeks
           setPlantsToWater(plantList);
         }else{
           setPlantsToWater(plantList.filter((plant) => plant.watering === "moderate" || plant.watering === "often"));
         }
-    } else {
-        setShowNotification(false);
-    };
+      } else {
+        setPlantsToWater([]);
+      }
     }, [plantList])
 
 
@@ -61,7 +57,7 @@ function PlantsManager() {
   return (
     <>
       <Menu />
-      {showNotification === true &&
+      {plantsToWater.length > 0 &&
        <Notification plantList={plantsToWater}/>
       }
       <NewPlant addNewPlant={handleAddNewPlant}/>
