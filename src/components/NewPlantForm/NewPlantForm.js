@@ -26,7 +26,7 @@ export function NewPlantForm({onSubmit}) {
         setLastRepoting(event.target.value);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (species.length === 0 || watering === "0" || waterType === "0" || fertilizing === "0" || lastRepoting === ""){
@@ -49,7 +49,9 @@ export function NewPlantForm({onSubmit}) {
                 lastRepoting
             };
 
-            addPlant(plantData, onSubmit);
+            await addPlant(plantData, () => {});
+
+            onSubmit(plantData);
 
             setSpecies("");
             setWatering("0");

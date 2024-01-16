@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { editPlant } from '../API/PlantsAPI.js'
 
 import './EditPlantForm.scss';
@@ -10,6 +10,14 @@ export function EditPlantForm({onSubmit, id, species, action, plantWatering, pla
     const [lastRepoting, setLastRepoting] = useState(plantLastRepoting);
     const [dateType, setDateType] = useState("text");
     const [validForm, setValidForm] = useState(true);
+    
+    const isMounted = useRef(true);
+
+    useEffect(() => {
+        return () => {
+            isMounted.current = false;
+        };
+    }, []);
 
     const handleWateringChange = (event) => {
         setWatering(event.target.value);
@@ -24,8 +32,12 @@ export function EditPlantForm({onSubmit, id, species, action, plantWatering, pla
         setLastRepoting(event.target.value);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (!isMounted.current) {
+            return;
+        }
 
         if (watering === "0" || waterType === "0" || fertilizing === "0" || lastRepoting === ""){
             setValidForm(false);
@@ -41,8 +53,9 @@ export function EditPlantForm({onSubmit, id, species, action, plantWatering, pla
                 lastRepoting
             };
 
-            editPlant(id, plantData, onSubmit);
+            await editPlant(id, plantData, onSubmit);
             action();
+            onSubmit(id, plantData);
 
             setWatering("0");
             setWaterType("0");

@@ -20,7 +20,7 @@ export const addPlant = (plantData, callback) => {
         },
         body: JSON.stringify(plantData)
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => callback(data))
     .catch(error => console.log(error));
 }
@@ -29,21 +29,28 @@ export const removePlant = (id, callback) => {
     fetch((`${url}/${id}`), {
         method: "DELETE"
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(callback(id))
     .catch(error => console.log(error));
 }
 
-export const editPlant = (id, plantData, callback) => {
-    fetch((`${url}/${id}`), {
-        method: "PUT",
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(plantData)
-    })
-    .then(response => response.json())
-    .then(data => callback(id, data))
-    .catch(error => console.log(error));
-}
+export const editPlant = async (id, plantData, callback) => {
+  try {
+    const response = await fetch(`${url}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(plantData),
+    });
 
+    if (!response.ok) {
+      throw new Error('Failed to edit plant');
+    }
+
+    const data = await response.json();
+    callback(id, data);
+  } catch (error) {
+    console.error('Error editing plant:', error);
+  }
+};
